@@ -11,7 +11,7 @@ class spin_conf {
 
         int sites;
         int dim;
-        int[] config;
+        int config[];
 
     public:
         
@@ -19,8 +19,9 @@ class spin_conf {
         double M();
         double dec_conf(int);
         set_conf(int[]);
+};
         
-spin_conf::spin_conf(N=10) {
+spin_conf::spin_conf(int N=10) {
     /*
     Initialize configuration
 
@@ -34,7 +35,8 @@ spin_conf::spin_conf(N=10) {
     */
     this->sites = N;
     this->dim = pow(2, N);
-    this->config = [N];
+    this->config[N];
+}
 
 double spin_conf::M() {
     /*
@@ -111,4 +113,4 @@ void spin_conf::set_conf(int[] conf):
     Returns
     -------
     */
-    this->config = conf; 
+    this->config = conf;

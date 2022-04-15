@@ -18,7 +18,7 @@ class hamiltonian {
         hamiltonian(double, double);
         double E(spin_conf);
         double avg(spin_conf, int);
-}
+};
 
 hamiltonian::hamiltonian(double J=-2.0, double mu=1.0) {
     /*
