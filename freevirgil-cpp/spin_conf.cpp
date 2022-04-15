@@ -17,8 +17,8 @@ class spin_conf {
         
         spin_conf(int);
         double M();
-        double dec_conf(int);
-        set_conf(int[]);
+        void dec_conf(int);
+        void set_conf(int[]);
 };
         
 spin_conf::spin_conf(int N=10) {
@@ -50,12 +50,12 @@ double spin_conf::M() {
     M : float
         magnetization
     */
-
     int N_up = 0;
     int N_down = 0;
-    for (int i = 0; i < self.sites; i++)
+
+    for (int i = 0; i < this->sites; i++)
     {
-        if (self.config[i] == 1)
+        if (this->config[i] == 1)
             N_up += 1;
         else
             N_down += 1;
@@ -77,30 +77,30 @@ void spin_conf::dec_conf(int dec) {
     Returns
     -------
     */
-    bool conf[self.sites];
+    bool conf[this->sites];
  
-    int i = 0;
-    while (dec > 0) 
+	// TODO : create separate array for bin conversion (based on size of decimal 2^x)
+	// set config array equal to this with -1 at the beginning
+
+	// start at the end
+    int i = this->sites - 1;
+    while (dec > 0 && i >= 0) 
     {
         conf[i] = dec % 2;
         dec = dec / 2;
-        i++;
+        i--;
     }
 
-    for (int i = 0; i < len(conf); i++)
+    for (int i = this->sites - 1; i >= 0; i--)
     {
         if (conf[i] == 0)
             conf[i] = -1;
     }
     
-    // NOTE: can't be done in c++
-    while (len(conf) < self.sites)
-        conf = [-1] + conf;
-        
     this->config = conf;
 }
 
-void spin_conf::set_conf(int[] conf):
+void spin_conf::set_conf(int conf[]) {
     /*
     Specify binary (-1, 1) 
     spin configuration
@@ -114,3 +114,4 @@ void spin_conf::set_conf(int[] conf):
     -------
     */
     this->config = conf;
+}
