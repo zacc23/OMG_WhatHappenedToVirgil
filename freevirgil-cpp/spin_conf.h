@@ -6,14 +6,11 @@ class spin_conf {
     Class for generating spin configurations   
         of various dimensions
     */
-    
-    private:    
+    public:
 
         int sites;
         int dim;
         int config[];
-
-    public:
         
         spin_conf(int);
         double M();
@@ -78,16 +75,16 @@ void spin_conf::dec_conf(int dec) {
     -------
     */
     int conf[this->sites];
-	// initialize to 0
-	for (int i = 0; i < this->sites; i++)
-	{
-		conf[i] = 0;
-	}
+    // initialize to 0
+    for (int i = 0; i < this->sites; i++)
+    {
+        conf[i] = 0;
+    }
  
-	// TODO : create separate array for bin conversion (based on size of decimal 2^x)
-	// set config array equal to this with -1 at the beginning
+    // TODO : create separate array for bin conversion (based on size of decimal 2^x)
+    // set config array equal to this with -1 at the beginning
 
-	// start at the end
+    // start at the end
     int i = this->sites - 1;
     while (dec > 0 && i >= 0) 
     {
@@ -96,14 +93,17 @@ void spin_conf::dec_conf(int dec) {
         i--;
     }
 
-	// set initial values to -1
+    // set initial values to -1
     for (int i = this->sites - 1; i >= 0; i--)
     {
         if (conf[i] == 0)
             conf[i] = -1;
     }
     
-    this->config = conf;
+    for (int i = 0; i < this->sites; i++)
+    {   
+        this->config[i] = conf[i];
+    }
 }
 
 void spin_conf::set_conf(int conf[]) {
@@ -119,5 +119,8 @@ void spin_conf::set_conf(int conf[]) {
     Returns
     -------
     */
-    this->config = conf;
+    for (int i = 0; i < this->sites; i++)
+    {   
+        this->config[i] = conf[i];
+    }
 }

@@ -1,4 +1,5 @@
 #include <cmath>
+#include "spin_conf.h"
 using namespace std;
 
 class hamiltonian {
@@ -8,17 +9,14 @@ class hamiltonian {
     .. math::
         H = -J\\sum_{\\left<ij\\right>} \\sigma_i\\sigma_j + \\mu\\sum_i\\sigma_i
     */
-    private:
-
+    public:
         double J;
         double mu;
-
-    public: 
 
         hamiltonian(double, double);
         double E(spin_conf);
         void avg(spin_conf, int, 
-			double&, double&, double&, double&);
+            double&, double&, double&, double&);
 };
 
 hamiltonian::hamiltonian(double J=-2.0, double mu=1.0) {
@@ -116,6 +114,7 @@ void hamiltonian::avg(spin_conf conf, int T,
         M += Mi * Zi;
         MM += Mi * Mi * Zi;
         Z += Zi;
+    }
           
     E = E/Z;
     M = M/Z;
