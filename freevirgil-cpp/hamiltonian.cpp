@@ -58,7 +58,7 @@ double hamiltonian::E(spin_conf spin) {
 	{
 		sum1 += spin.config[i] * spin.config[i+1];
 		sum2 += spin.config[i];
-		# Periodic boundary conditions
+		// Periodic boundary conditions
 		if (i == spin.sites-2)
 		{
 			sum1 += spin.config[i+1] * spin.config[0];
@@ -103,23 +103,23 @@ void hamiltonian::avg(spin_conf conf, int T,
 	
 	for (int i=0; i < conf.dim; i++)
 	{				
-		# generate each possible configuration
-		conf.dec_conf(i)
+		// generate each possible configuration
+		conf.dec_conf(i);
 		
-		Ei = self.E(conf)
-		Zi = exp( -Ei/T )
-		E += Ei * Zi
-		EE += Ei * Ei * Zi
+		Ei = this->E(conf);
+		Zi = exp( -Ei/T );
+		E += Ei * Zi;
+		EE += Ei * Ei * Zi;
 		
-		Mi = conf.M()
-		M += Mi * Zi
-		MM += Mi * Mi * Zi
-		Z += Zi
+		Mi = conf.M();
+		M += Mi * Zi;
+		MM += Mi * Mi * Zi;
+		Z += Zi;
 		  
-	E = E/Z
-	M = M/Z
-	EE = EE/Z
-	MM = MM/Z
+	E = E/Z;
+	M = M/Z;
+	EE = EE/Z;
+	MM = MM/Z;
 
 	HC = (EE - E*E) / (T*T);
 	MS = (MM - M*M) / T;
