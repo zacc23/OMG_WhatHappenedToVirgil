@@ -17,7 +17,7 @@ class hamiltonian {
 
         hamiltonian(double, double);
         double E(spin_conf);
-        double avg(spin_conf, int, 
+        void avg(spin_conf, int, 
 			double&, double&, double&, double&);
 };
 

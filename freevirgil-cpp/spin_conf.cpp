@@ -77,7 +77,12 @@ void spin_conf::dec_conf(int dec) {
     Returns
     -------
     */
-    bool conf[this->sites];
+    int conf[this->sites];
+	// initialize to 0
+	for (int i = 0; i < this->sites; i++)
+	{
+		conf[i] = 0;
+	}
  
 	// TODO : create separate array for bin conversion (based on size of decimal 2^x)
 	// set config array equal to this with -1 at the beginning
@@ -91,6 +96,7 @@ void spin_conf::dec_conf(int dec) {
         i--;
     }
 
+	// set initial values to -1
     for (int i = this->sites - 1; i >= 0; i--)
     {
         if (conf[i] == 0)
