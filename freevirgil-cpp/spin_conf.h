@@ -10,14 +10,14 @@ class spin_conf {
         of various dimensions
     */
     public:
-
-        int sites;
-        int dim;
-        int config[];
         
+    int sites;
+        int dim;
+        int config[];    
         spin_conf(int);
-        double M();
+        double magnetization();
         void dec_conf(int);
+        int[] get_conf();
         void set_conf(int[]);
 };
         
@@ -38,7 +38,7 @@ spin_conf::spin_conf(int N=10) {
     this->config[N];
 }
 
-double spin_conf::M() {
+double spin_conf::magnetization() {
     /*
     Magnetization of configuration
 
@@ -84,9 +84,6 @@ void spin_conf::dec_conf(int dec) {
         conf[i] = 0;
     }
  
-    // TODO : create separate array for bin conversion (based on size of decimal 2^x)
-    // set config array equal to this with -1 at the beginning
-
     // start at the end
     int i = this->sites - 1;
     while (dec > 0 && i >= 0) 
@@ -106,9 +103,24 @@ void spin_conf::dec_conf(int dec) {
     for (int i = 0; i < this->sites; i++)
     {   
         this->config[i] = conf[i];
+        cout << this->config[i] << " ";
     }
+    cout << endl;
 }
 
+int[] spin_conf::get_conf() {
+    /*
+    Get binary (-1, 1)
+    spin configuration
+
+    Returns
+    -------
+    conf : int list
+        Spin configuration list (-1, 1)
+    */
+    return this->config;
+}
+    
 void spin_conf::set_conf(int conf[]) {
     /*
     Specify binary (-1, 1) 

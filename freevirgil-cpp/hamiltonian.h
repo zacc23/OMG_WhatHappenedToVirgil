@@ -18,7 +18,7 @@ class hamiltonian {
         double mu;
 
         hamiltonian(double, double);
-        double E(spin_conf);
+        double energy(spin_conf);
         void avg(spin_conf, int, 
             double&, double&, double&, double&);
 };
@@ -38,7 +38,7 @@ hamiltonian::hamiltonian(double J=-2.0, double mu=1.0) {
     this->mu = mu;
 }
         
-double hamiltonian::E(spin_conf spin) {
+double hamiltonian::energy(spin_conf spin) {
     /*
     Energy of configuration `spin`
 
@@ -57,10 +57,12 @@ double hamiltonian::E(spin_conf spin) {
     */
     int sum1 = 0;
     int sum2 = 0;
-    for (int i = 0; i < spin.sites; i++)
+    for (int i = 0; i < spin.sites-1; i++)
     {
         sum1 += spin.config[i] * spin.config[i+1];
+        //cout << sum1 << " ";
         sum2 += spin.config[i];
+        //cout << sum2 << endl;
         // Periodic boundary conditions
         if (i == spin.sites-2)
         {
@@ -68,10 +70,12 @@ double hamiltonian::E(spin_conf spin) {
             sum2 += spin.config[i+1];
         }
     }
+    //cout << sum1 << " " << sum2 << " " <<
+    //  (-(this->J) * sum1) + (this->mu * sum2) << endl;
     return (-(this->J) * sum1) + (this->mu * sum2);      
 }
 
-void hamiltonian::avg(spin_conf conf, int T, 
+void hamiltonian::avg(spin_conf spin, int T, 
     double& E, double& M, double& HC, double& MS)
 {
     /*
@@ -104,18 +108,24 @@ void hamiltonian::avg(spin_conf conf, int T,
            EE = 0.0,
            MM = 0.0;
     
-    for (int i=0; i < conf.dim; i++)
+    for (int i=0; i < spin.dim; i++)
     {               
         // generate each possible configuration
-        conf.dec_conf(i);
+        spin.dec_conf(i);
+        for (int i = 0; i < spin.sites; i++)
+        {
+            cout << spin.config[i];
+        }
+        cout << endl;       
         
-        Ei = this->E(conf);
-	cout << Ei << endl;
+        Ei = this->energy(spin);
         Zi = exp( -Ei/T );
         E += Ei * Zi;
         EE += Ei * Ei * Zi;
+        cout << Ei << " " << Zi << " " <<
+            E << " " << EE << endl;
         
-        Mi = conf.M();
+        Mi = spin.magnetization();
         M += Mi * Zi;
         MM += Mi * Mi * Zi;
         Z += Zi;
