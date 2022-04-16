@@ -1,6 +1,7 @@
 #ifndef HAMILTONIAN_H
 #define HAMILTONIAN_H
 
+#include <iostream>
 #include <cmath>
 #include "spin_conf.h"
 using namespace std;
@@ -109,6 +110,7 @@ void hamiltonian::avg(spin_conf conf, int T,
         conf.dec_conf(i);
         
         Ei = this->E(conf);
+	cout << Ei << endl;
         Zi = exp( -Ei/T );
         E += Ei * Zi;
         EE += Ei * Ei * Zi;

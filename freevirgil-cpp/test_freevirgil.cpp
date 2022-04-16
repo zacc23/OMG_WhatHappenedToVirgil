@@ -11,7 +11,9 @@ void test_freevirgil_included()
 {
 	/*
 	#include "spin_conf.h"
+	assert(SPIN_CONF_H);
 	#include "hamiltonian.h"	
+	assert(HAMILTONIAN_H);
 	*/
 }
 
