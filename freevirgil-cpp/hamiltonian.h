@@ -1,3 +1,6 @@
+#ifndef HAMILTONIAN_H
+#define HAMILTONIAN_H
+
 #include <cmath>
 #include "spin_conf.h"
 using namespace std;
@@ -124,3 +127,5 @@ void hamiltonian::avg(spin_conf conf, int T,
     HC = (EE - E*E) / (T*T);
     MS = (MM - M*M) / T;
 }
+
+#endif // HAMILTONIAN_H

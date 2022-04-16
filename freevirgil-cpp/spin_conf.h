@@ -1,3 +1,6 @@
+#ifndef SPIN_CONF_H
+#define SPIN_CONF_H
+
 #include <cmath>
 using namespace std;
 
@@ -124,3 +127,5 @@ void spin_conf::set_conf(int conf[]) {
         this->config[i] = conf[i];
     }
 }
+
+#endif // SPIN_CONF_H
