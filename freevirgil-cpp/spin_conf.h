@@ -105,12 +105,11 @@ void spin_conf::dec_conf(int dec) {
             conf[i] = -1;
     }
     
+	// set configuration		
     for (int i = 0; i < this->sites; i++)
     {   
         this->config[i] = conf[i];
-        //cout << this->config[i] << " ";
     }
-    //cout << endl;
 }
 
 void spin_conf::set_conf(int conf[]) {

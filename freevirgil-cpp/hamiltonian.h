@@ -60,9 +60,7 @@ double hamiltonian::energy(spin_conf spin) {
     for (int i = 0; i < spin.sites - 1; i++)
     {
         sum1 += spin.config[i] * spin.config[i + 1];
-        //cout << sum1 << " ";
         sum2 += spin.config[i];
-        //cout << sum2 << endl;
         // Periodic boundary conditions
         if (i == spin.sites - 2)
         {
@@ -70,7 +68,6 @@ double hamiltonian::energy(spin_conf spin) {
             sum2 += spin.config[i + 1];
         }
     }
-    //cout << sum1 << " " << sum2 << " " <<
     //  (-(this->J) * sum1) + (this->mu * sum2) << endl;
     return (-(this->J) * sum1) + (this->mu * sum2);      
 }
@@ -117,8 +114,6 @@ void hamiltonian::avg(spin_conf spin, int T,
         Zi = exp( -Ei/T );
         E += Ei * Zi;
         EE += Ei * Ei * Zi;
-        //cout << Ei << " " << Zi << " " <<
-        //    E << " " << EE << endl;
         
         Mi = spin.magnetization();
         M += Mi * Zi;
