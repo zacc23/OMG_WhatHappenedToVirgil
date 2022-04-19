@@ -57,17 +57,17 @@ double hamiltonian::energy(spin_conf spin) {
     */
     int sum1 = 0;
     int sum2 = 0;
-    for (int i = 0; i < spin.sites-1; i++)
+    for (int i = 0; i < spin.sites - 1; i++)
     {
-        sum1 += spin.config[i] * spin.config[i+1];
+        sum1 += spin.config[i] * spin.config[i + 1];
         //cout << sum1 << " ";
         sum2 += spin.config[i];
         //cout << sum2 << endl;
         // Periodic boundary conditions
-        if (i == spin.sites-2)
+        if (i == spin.sites - 2)
         {
-            sum1 += spin.config[i+1] * spin.config[0];
-            sum2 += spin.config[i+1];
+            sum1 += spin.config[i + 1] * spin.config[0];
+            sum2 += spin.config[i + 1];
         }
     }
     //cout << sum1 << " " << sum2 << " " <<
