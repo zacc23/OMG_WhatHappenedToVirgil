@@ -11,21 +11,23 @@ class spin_conf {
     */
     public:
         
-    int sites;
-	int dim;
-	int config[];    
-	spin_conf(int);
-	double magnetization();
-	void dec_conf(int);
-	void set_conf(int[]);
+        int sites;
+        int dim;
+        int *config;    
+        spin_conf();
+        ~spin_conf();
+        double magnetization();
+        void dec_conf(int);
+        void set_conf(int[]);
 };
         
-spin_conf::spin_conf(int N=10) {
+spin_conf::spin_conf() {
     /*
     Initialize configuration
 
     Parameters
     ----------
+    TODO: move to template
     N : int, default: 10
         Amount of sites
     
@@ -34,7 +36,20 @@ spin_conf::spin_conf(int N=10) {
     */
     this->sites = N;
     this->dim = pow(2, N);
-    this->config[N];
+    this->config = new int[N]; 
+}
+
+spin_conf::~spin_conf() {
+    /*
+    Destroy configuration
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    */
+    delete[] config;    
 }
 
 double spin_conf::magnetization() {
