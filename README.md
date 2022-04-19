@@ -1,8 +1,8 @@
 OhMyGodWhatHappenedToVirgil
 ==============================
 
-`cd  freevirgil-cpp`
-`g++ test_freevirgil.cpp -o test`
+`cd  freevirgil-cpp
+g++ test_freevirgil.cpp -o test`
 
 * Submit pull requests with a notice on why your changes or additions are necessary
 
