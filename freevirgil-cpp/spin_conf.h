@@ -4,7 +4,6 @@
 #include <cmath>
 using namespace std;
 
-template <int N>
 class spin_conf {
     /*
     Class for generating spin configurations   
@@ -14,20 +13,21 @@ class spin_conf {
         
         int sites;
         int dim;
-        int config[N]; 
+    int *config;
         spin_conf(int);
         double magnetization();
         void dec_conf(int);
         void set_conf(int[]);
 };
         
-spin_conf::spin_conf() {
+// https://en.cppreference.com/w/cpp/language/constructor (member initializer list)
+spin_conf::spin_conf(int N) : config(new int[N]) {
     /*
     Initialize configuration
 
     Parameters
     ----------
-	TODO: move to template
+    TODO: move to template
     N : int, default: 10
         Amount of sites
     
@@ -36,23 +36,10 @@ spin_conf::spin_conf() {
     */
     this->sites = N;
     this->dim = pow(2, N);
-	for (int i = 0; i < N; i++)
-	{
-		this->config[i] = 0; 
-	}
-}
-
-spin_conf::~spin_conf() {
-    /*
-    Destroy configuration
-
-    Parameters
-    ----------
-
-    Returns
-    -------
-    */
-    delete[] config;    
+    for (int i = 0; i < N; i++)
+    {
+        this->config[i] = 0; 
+    }
 }
 
 double spin_conf::magnetization() {
@@ -95,7 +82,7 @@ void spin_conf::dec_conf(int dec) {
     -------
     */
     int conf[this->sites];
-	this->config = new int[this->sites];
+    this->config = new int[this->sites];
     // initialize to 0
     for (int i = 0; i < this->sites; i++)
     {
@@ -121,9 +108,9 @@ void spin_conf::dec_conf(int dec) {
     for (int i = 0; i < this->sites; i++)
     {   
         this->config[i] = conf[i];
-        cout << this->config[i] << " ";
+        //cout << this->config[i] << " ";
     }
-    cout << endl;
+    //cout << endl;
 }
 
 void spin_conf::set_conf(int conf[]) {

@@ -112,18 +112,13 @@ void hamiltonian::avg(spin_conf spin, int T,
     {               
         // generate each possible configuration
         spin.dec_conf(i);
-        for (int i = 0; i < spin.sites; i++)
-        {
-            cout << spin.config[i];
-        }
-        cout << endl;       
         
         Ei = this->energy(spin);
         Zi = exp( -Ei/T );
         E += Ei * Zi;
         EE += Ei * Ei * Zi;
-        cout << Ei << " " << Zi << " " <<
-            E << " " << EE << endl;
+        //cout << Ei << " " << Zi << " " <<
+        //    E << " " << EE << endl;
         
         Mi = spin.magnetization();
         M += Mi * Zi;
