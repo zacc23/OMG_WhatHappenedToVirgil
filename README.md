@@ -2,7 +2,7 @@ OhMyGodWhatHappenedToVirgil
 ==============================
 
 `cd  freevirgil-cpp &&
-c++ tests/test2.cpp -I. -o test2`
+c++ tests/test2.cpp -I. -o test2 && ./test2`
 
 * Submit pull requests with a notice on why your changes or additions are necessary
 
