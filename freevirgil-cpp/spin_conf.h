@@ -4,6 +4,7 @@
 #include <cmath>
 using namespace std;
 
+template <int N>
 class spin_conf {
     /*
     Class for generating spin configurations   
@@ -13,9 +14,8 @@ class spin_conf {
         
         int sites;
         int dim;
-        int *config;    
-        spin_conf();
-        ~spin_conf();
+        int config[N]; 
+        spin_conf(int);
         double magnetization();
         void dec_conf(int);
         void set_conf(int[]);
@@ -27,7 +27,7 @@ spin_conf::spin_conf() {
 
     Parameters
     ----------
-    TODO: move to template
+	TODO: move to template
     N : int, default: 10
         Amount of sites
     
@@ -36,7 +36,10 @@ spin_conf::spin_conf() {
     */
     this->sites = N;
     this->dim = pow(2, N);
-    this->config = new int[N]; 
+	for (int i = 0; i < N; i++)
+	{
+		this->config[i] = 0; 
+	}
 }
 
 spin_conf::~spin_conf() {
@@ -92,6 +95,7 @@ void spin_conf::dec_conf(int dec) {
     -------
     */
     int conf[this->sites];
+	this->config = new int[this->sites];
     // initialize to 0
     for (int i = 0; i < this->sites; i++)
     {
