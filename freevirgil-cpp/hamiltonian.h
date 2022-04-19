@@ -68,7 +68,6 @@ double hamiltonian::energy(spin_conf spin) {
             sum2 += spin.config[i + 1];
         }
     }
-    //  (-(this->J) * sum1) + (this->mu * sum2) << endl;
     return (-(this->J) * sum1) + (this->mu * sum2);      
 }
 
