@@ -12,13 +12,12 @@ class spin_conf {
     public:
         
     int sites;
-        int dim;
-        int config[];    
-        spin_conf(int);
-        double magnetization();
-        void dec_conf(int);
-        int[] get_conf();
-        void set_conf(int[]);
+	int dim;
+	int config[];    
+	spin_conf(int);
+	double magnetization();
+	void dec_conf(int);
+	void set_conf(int[]);
 };
         
 spin_conf::spin_conf(int N=10) {
@@ -108,19 +107,6 @@ void spin_conf::dec_conf(int dec) {
     cout << endl;
 }
 
-int[] spin_conf::get_conf() {
-    /*
-    Get binary (-1, 1)
-    spin configuration
-
-    Returns
-    -------
-    conf : int list
-        Spin configuration list (-1, 1)
-    */
-    return this->config;
-}
-    
 void spin_conf::set_conf(int conf[]) {
     /*
     Specify binary (-1, 1) 
