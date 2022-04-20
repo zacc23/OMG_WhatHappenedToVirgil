@@ -13,7 +13,7 @@ class spin_conf {
         
         int sites;
         int dim;
-    int *config;
+    	int *config;
         spin_conf(int);
         double magnetization();
         void dec_conf(int);
@@ -27,7 +27,6 @@ spin_conf::spin_conf(int N) : config(new int[N]) {
 
     Parameters
     ----------
-    TODO: move to template
     N : int, default: 10
         Amount of sites
     
@@ -81,19 +80,17 @@ void spin_conf::dec_conf(int dec) {
     Returns
     -------
     */
-    int conf[this->sites];
-    this->config = new int[this->sites];
-    // initialize to 0
+	// initialize to 0
     for (int i = 0; i < this->sites; i++)
     {
-        conf[i] = 0;
+        this->config[i] = 0;
     }
  
     // start at the end
     int i = this->sites - 1;
     while (dec > 0 && i >= 0) 
     {
-        conf[i] = dec % 2;
+        this->config[i] = dec % 2;
         dec = dec / 2;
         i--;
     }
@@ -101,14 +98,8 @@ void spin_conf::dec_conf(int dec) {
     // set initial values to -1
     for (int i = this->sites - 1; i >= 0; i--)
     {
-        if (conf[i] == 0)
-            conf[i] = -1;
-    }
-    
-	// set configuration		
-    for (int i = 0; i < this->sites; i++)
-    {   
-        this->config[i] = conf[i];
+        if (this->config[i] == 0)
+            this->config[i] = -1;
     }
 }
 
