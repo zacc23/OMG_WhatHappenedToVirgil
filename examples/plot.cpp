@@ -33,7 +33,10 @@ int main()
         for (int i = 0; i < irange; i++)
         {
                 T[i] = 0.1 * (i + 1);
-                ham.avg(spin, 1, E[i], M[i], HC[i], MS[i]);
+		//cout << T[i] << endl;
+                ham.avg(spin, T[i], E[i], M[i], HC[i], MS[i]);
+		cout << E[i] << ' ' << M[i] << ' ' << 
+			HC[i] << ' ' << MS[i] << endl;
         }
 
 	TGraph *EvT = new TGraph(irange, T, E);
@@ -44,7 +47,7 @@ int main()
 	EvT->SetTitle("Quantities versus Temperature");
 	EvT->GetXaxis()->SetTitle("Temperature");
         EvT->GetXaxis()->CenterTitle(true);
-	EvT->SetMarkerSize(4);
+	EvT->SetMarkerSize(1);
         EvT->SetMarkerColor(2);
         EvT->SetMarkerStyle(33);
 	EvT->Draw("AP");
