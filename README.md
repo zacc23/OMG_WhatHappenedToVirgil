@@ -12,8 +12,9 @@ Install CERN Root (https://root.cern/)
 `c++ examples/plot.cpp -I. $(root-config --cflags --libs) -o plot && ./plot`
 (creates PNG and PDF file for viewing)
 
+------------------------------
 
-* Submit pull requests with a notice on why your changes or additions are necessary
+Submit pull requests with a notice on why your changes or additions are necessary
 
 ### Copyright
 
