@@ -18,8 +18,8 @@ int main()
 	c1->SetGrid();
         c1->GetFrame()->SetBorderSize(12);
 
-	// N = 2
-        spin_conf spin(2);
+	// N = 10
+        spin_conf spin(10);
         // J = -2, mu = 1.1
         hamiltonian ham(-2, 1.1);
 
@@ -32,11 +32,13 @@ int main()
 
         for (int i = 0; i < irange; i++)
         {
-                T[i] = 0.1 * (i + 1);
+		// NOTE: remove '+ 1' when numbers can be small 
+		// enough (e-34)
+                T[i] = 0.1 * (i + 1) + 1;
 		//cout << T[i] << endl;
                 ham.avg(spin, T[i], E[i], M[i], HC[i], MS[i]);
-		cout << E[i] << ' ' << M[i] << ' ' << 
-			HC[i] << ' ' << MS[i] << endl;
+		cout << T[i] << ' ' << E[i] << ' ' << M[i] << 
+			' ' << HC[i] << ' ' << MS[i] << endl;
         }
 
 	TGraph *EvT = new TGraph(irange, T, E);
@@ -50,24 +52,26 @@ int main()
 	EvT->SetMarkerSize(1);
         EvT->SetMarkerColor(2);
         EvT->SetMarkerStyle(33);
-	EvT->Draw("AP");
+	EvT->GetXaxis()->SetRangeUser(0, 10);
+	EvT->GetYaxis()->SetRangeUser(-20, 5);
+	EvT->Draw("AC");
 	
 	MvT->SetMarkerSize(2);
-        MvT->SetMarkerColor(2);
+        MvT->SetMarkerColor(3);
         MvT->SetMarkerStyle(34);
         MvT->SetLineWidth(3);
         MvT->SetLineColor(1);
         MvT->Draw("CSame");
 
 	HCvT->SetMarkerSize(2);
-        HCvT->SetMarkerColor(2);
+        HCvT->SetMarkerColor(4);
         HCvT->SetMarkerStyle(33);
         HCvT->SetLineWidth(3);
         HCvT->SetLineColor(2);
         HCvT->Draw("CSame");
 
 	MSvT->SetMarkerSize(2);
-        MSvT->SetMarkerColor(2);
+        MSvT->SetMarkerColor(5);
         MSvT->SetMarkerStyle(33);
         MSvT->SetLineWidth(3);
         MSvT->SetLineColor(2);
