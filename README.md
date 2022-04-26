@@ -3,7 +3,7 @@ OhMyGodWhatHappenedToVirgil
 
 `c++ tests/test2.cpp -I. -o test2 && ./test2`
 
-For plotting: 
+# For plotting: 
 
 install CERN Root (https://root.cern/)
 
