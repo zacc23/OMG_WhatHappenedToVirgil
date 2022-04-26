@@ -14,7 +14,7 @@ Install CERN Root (https://root.cern/)
 
 ------------------------------
 
-Submit pull requests with a notice on why your changes or additions are necessary
+* Submit pull requests with a notice on why your changes or additions are necessary
 
 ### Copyright
 
