@@ -1,8 +1,12 @@
 OhMyGodWhatHappenedToVirgil
 ==============================
 
-`cd  freevirgil-cpp &&
-c++ tests/test2.cpp -I. -o test2 && ./test2`
+`c++ tests/test2.cpp -I. -o test2 && ./test2`
+
+For plotting: 
+install CERN Root (https://root.cern/)
+`c++ examples/plot.cpp -I. $(root-config --cflags --libs) -o plot && ./plot`
+(creates PNG and PDF file for viewing)
 
 * Submit pull requests with a notice on why your changes or additions are necessary
 
