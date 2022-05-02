@@ -4,8 +4,9 @@ graph program for the freevirgil package.
 
 #include <TCanvas.h>
 #include <TFrame.h>
-#include <TGraphSmooth.h>
 #include <TAxis.h>
+#include <TGraph.h>
+#include <TLegend.h>
 
 #include <iostream>
 #include "spin_conf.h"
@@ -44,6 +45,7 @@ int main()
 	TGraph *MvT = new TGraph(irange, T, M);
         TGraph *HCvT = new TGraph(irange, T, HC);
         TGraph *MSvT = new TGraph(irange, T, MS);
+	TLegend *leg = new TLegend(0.75, 0.1, 0.9, 0.3);
 
 	EvT->SetTitle("Quantities versus Temperature");
 	EvT->GetXaxis()->SetTitle("Temperature");
@@ -65,6 +67,13 @@ int main()
 	MSvT->SetLineWidth(3);
         MSvT->SetLineColor(4);
         MSvT->Draw("CSame");
+
+	//leg->SetHeader("The Legend Title");
+	leg->AddEntry(EvT, "<E>", "l");
+	leg->AddEntry(MvT, "<M>", "l");
+	leg->AddEntry(HCvT, "HC", "l");
+	leg->AddEntry(MSvT, "MS", "l");
+	leg->Draw();
 
 	c1->Update();
         c1->Print("plot.pdf");
