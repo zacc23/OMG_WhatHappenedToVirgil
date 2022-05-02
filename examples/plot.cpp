@@ -32,8 +32,8 @@ int main()
 
         for (int i = 0; i < irange; i++)
         {
-		// start at 1.0, increment by .1 until end
-                T[i] = (0.1 * i) + 1;
+		// start at .1, increment by .1 until end
+                T[i] = 0.1 * (i + 1);
 		//cout << T[i] << endl;
                 ham.avg(spin, T[i], E[i], M[i], HC[i], MS[i]);
 		//cout << T[i] << ' ' << E[i] << ' ' << M[i] << 
