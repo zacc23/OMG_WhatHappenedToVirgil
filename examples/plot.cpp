@@ -4,7 +4,7 @@ graph program for the freevirgil package.
 
 #include <TCanvas.h>
 #include <TFrame.h>
-#include <TGraph.h>
+#include <TGraphSmooth.h>
 #include <TAxis.h>
 
 #include <iostream>
@@ -32,13 +32,12 @@ int main()
 
         for (int i = 0; i < irange; i++)
         {
-		// NOTE: remove '+ 1' when numbers can be small 
-		// enough (e-34)
-                T[i] = 0.1 * (i + 1) + 1;
+		// start at 1.0, increment by .1 until end
+                T[i] = (0.1 * i) + 1;
 		//cout << T[i] << endl;
                 ham.avg(spin, T[i], E[i], M[i], HC[i], MS[i]);
-		cout << T[i] << ' ' << E[i] << ' ' << M[i] << 
-			' ' << HC[i] << ' ' << MS[i] << endl;
+		//cout << T[i] << ' ' << E[i] << ' ' << M[i] << 
+		//	' ' << HC[i] << ' ' << MS[i] << endl;
         }
 
 	TGraph *EvT = new TGraph(irange, T, E);
@@ -49,32 +48,22 @@ int main()
 	EvT->SetTitle("Quantities versus Temperature");
 	EvT->GetXaxis()->SetTitle("Temperature");
         EvT->GetXaxis()->CenterTitle(true);
-	EvT->SetMarkerSize(1);
-        EvT->SetMarkerColor(2);
-        EvT->SetMarkerStyle(33);
+	EvT->SetLineWidth(3);
+	EvT->SetLineColor(1);
 	EvT->GetXaxis()->SetRangeUser(0, 10);
 	EvT->GetYaxis()->SetRangeUser(-20, 5);
 	EvT->Draw("AC");
 	
-	MvT->SetMarkerSize(2);
-        MvT->SetMarkerColor(3);
-        MvT->SetMarkerStyle(34);
-        MvT->SetLineWidth(3);
-        MvT->SetLineColor(1);
+	MvT->SetLineWidth(3);
+        MvT->SetLineColor(2);
         MvT->Draw("CSame");
 
-	HCvT->SetMarkerSize(2);
-        HCvT->SetMarkerColor(4);
-        HCvT->SetMarkerStyle(33);
-        HCvT->SetLineWidth(3);
-        HCvT->SetLineColor(2);
+	HCvT->SetLineWidth(3);
+        HCvT->SetLineColor(3);
         HCvT->Draw("CSame");
 
-	MSvT->SetMarkerSize(2);
-        MSvT->SetMarkerColor(5);
-        MSvT->SetMarkerStyle(33);
-        MSvT->SetLineWidth(3);
-        MSvT->SetLineColor(2);
+	MSvT->SetLineWidth(3);
+        MSvT->SetLineColor(4);
         MSvT->Draw("CSame");
 
 	c1->Update();

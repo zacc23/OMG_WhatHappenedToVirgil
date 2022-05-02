@@ -19,7 +19,7 @@ class hamiltonian {
 
         hamiltonian(double, double);
         double energy(spin_conf);
-        void avg(spin_conf, int, 
+        void avg(spin_conf, double, 
             double&, double&, double&, double&);
 };
 
@@ -71,7 +71,7 @@ double hamiltonian::energy(spin_conf spin) {
     return (-(this->J) * sum1) + (this->mu * sum2);      
 }
 
-void hamiltonian::avg(spin_conf spin, int T, 
+void hamiltonian::avg(spin_conf spin, double T, 
     double& E, double& M, double& HC, double& MS)
 {
     /*
@@ -81,7 +81,7 @@ void hamiltonian::avg(spin_conf spin, int T,
     ----------
     spin : :class:`spin_conf`
         Spin configuration
-    T : int
+    T : float
         Temperature
     
     Returns 
@@ -127,6 +127,9 @@ void hamiltonian::avg(spin_conf spin, int T,
 
     HC = (EE - E*E) / (T*T);
     MS = (MM - M*M) / T;
+
+	cout << E << ' ' << M << ' ' << EE	<< ' ' 
+		<< MM << ' ' << HC << ' ' << MS << endl;
 }
 
 #endif // HAMILTONIAN_H
