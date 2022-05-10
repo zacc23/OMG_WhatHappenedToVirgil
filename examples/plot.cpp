@@ -19,8 +19,8 @@ int main()
 	c1->SetGrid();
         c1->GetFrame()->SetBorderSize(12);
 
-	// N = 10
-        spin_conf spin(10);
+	// N = 20
+        spin_conf spin(20);
         // J = -2, mu = 1.1
         hamiltonian ham(-2, 1.1);
 
@@ -47,13 +47,13 @@ int main()
         TGraph *MSvT = new TGraph(irange, T, MS);
 	TLegend *leg = new TLegend(0.75, 0.1, 0.9, 0.3);
 
-	EvT->SetTitle("Quantities versus Temperature");
+	//EvT->SetTitle("Quantities versus Temperature");
 	EvT->GetXaxis()->SetTitle("Temperature");
         EvT->GetXaxis()->CenterTitle(true);
+	EvT->GetXaxis()->SetRangeUser(0, 10);
+        EvT->GetYaxis()->SetRangeUser(-40, 10);
 	EvT->SetLineWidth(3);
 	EvT->SetLineColor(1);
-	EvT->GetXaxis()->SetRangeUser(0, 10);
-	EvT->GetYaxis()->SetRangeUser(-20, 5);
 	EvT->Draw("AC");
 	
 	MvT->SetLineWidth(3);
